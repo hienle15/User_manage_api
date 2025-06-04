@@ -1,9 +1,0 @@
-{
-    "compilerOptions": {//trình biên dịch
-     "target": "ES6",
-     "module": "commonJS",
-     "rootDir": "./src",
-     "strict": true,
-     "esModuleInterop": true
-    }
-}
