@@ -1,4 +1,12 @@
-// config/swagger.ts
+import dotenv from 'dotenv';
+
+// Load environment variables
+dotenv.config();
+
+const DB_HOST = process.env.DB_HOST;
+const PORT = process.env.PORT;
+const API_VERSION = process.env.API_VERSION;
+
 const swaggerOptions = {
   definition: {
     openapi: '3.0.4',
@@ -9,7 +17,7 @@ const swaggerOptions = {
     },
     servers: [
       {
-        url: 'http://10.10.23.106:3000/api/v1',
+        url: `http://${DB_HOST}:${PORT}${API_VERSION}`,
         description: 'Development server',
       },
     ],
