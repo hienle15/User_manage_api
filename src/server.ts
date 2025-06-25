@@ -7,6 +7,7 @@ import swaggerOptions from './config/swagger';
 import router from "./routes/user.routes";
 import { errorHandler } from './middleware/errorHandler';
 import dotenv from 'dotenv';
+import projectRoutes from "./routes/project.routes";
 
 
 
@@ -27,10 +28,14 @@ app.use('/api-docs', swaggerUi.serve, (req: Request, res: Response, next: NextFu
   const specs = swaggerJsdoc(swaggerOptions);
   swaggerUi.setup(specs)(req, res, next);
 });
-
+app.use('/projects', swaggerUi.serve, (req: Request, res: Response, next: NextFunction) => {
+  const specs = swaggerJsdoc(swaggerOptions);
+  swaggerUi.setup(specs)(req, res, next);
+});
 
 // Routes
 app.use(API_VERSION + "/users", router);
+app.use(API_VERSION + "/projects", projectRoutes);
 
 // 404
 app.use((req, res) => {
@@ -46,4 +51,5 @@ app.use(errorHandler);
 app.listen(PORT, () => {
   console.log(`Server running at: http://${HOST}:${PORT}`);
   console.log(`Swagger UI: http://${DB_HOST}:${PORT}/api-docs`);
+console.log(`Projects: http://${DB_HOST}:${PORT}/projects`);
 });

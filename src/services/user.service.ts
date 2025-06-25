@@ -30,7 +30,7 @@ export const findByEmail = (email: string) =>
 export const create = async (userData: UserData) => {
     const existingUser = await findByEmail(userData.email!);
     if (existingUser?.length > 0) {
-        throw new Error('Email already exists');
+        throw new Error('Email đã tồn tại trong hệ thống');
     }
     return executeQuery(
         "INSERT INTO users (name, email, age) VALUES (?, ?, ?)",
@@ -42,7 +42,7 @@ export const update = async (id: number, updateData: UserData) => {
     if (updateData.email) {
         const existingUser = await findByEmail(updateData.email);
         if (existingUser?.length > 0 && existingUser[0].id !== id) {
-            throw new Error('Email already exists');
+            throw new Error('Email đã tồn tại trong hệ thống');
         }
     }
 
@@ -57,3 +57,13 @@ export const update = async (id: number, updateData: UserData) => {
 
 export const remove = (id: number) => 
     executeQuery("DELETE FROM users WHERE id = ?", [id]);
+
+export const isDuplicateUser = async (name: string, description: string, excludeId?: number): Promise<boolean> => {
+    const query = excludeId
+        ? "SELECT * FROM users WHERE name = ? AND description = ? AND id != ?"
+        : "SELECT * FROM users WHERE name = ? AND description = ?";
+    
+    const params = excludeId ? [name, description, excludeId] : [name, description];
+    const [results] = await executeQuery(query, params);
+    return results.length > 0;
+};

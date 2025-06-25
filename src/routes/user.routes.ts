@@ -203,7 +203,7 @@ const router = express.Router();
 
 router.get("/", asyncHandler(userController.findAll));
 router.get("/:id", asyncHandler(userController.findOne));
-router.post("/", validateHandler.create, asyncHandler(userController.create));
-router.put("/:id", validateHandler.update, asyncHandler(userController.update));
+router.post("/", asyncHandler(userController.create));
+router.put("/:id", asyncHandler(userController.update));
 router.delete("/:id", asyncHandler(userController.remove));
 export default router;

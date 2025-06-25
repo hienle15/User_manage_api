@@ -1,5 +1,6 @@
 import { Request, Response, NextFunction, ErrorRequestHandler } from 'express';
 
+// General error-handling middleware
 export const errorHandler: ErrorRequestHandler = (
     err: any,
     req: Request,
@@ -8,7 +9,7 @@ export const errorHandler: ErrorRequestHandler = (
 ): void => {
     console.error('Error:', err);
 
-    // Handle 404 errors
+    // Handle 404 - User not found
     if (err.status === 404) {
         res.status(404).json({
             status: 404,
@@ -24,7 +25,7 @@ export const errorHandler: ErrorRequestHandler = (
     });
 };
 
-// Add route not found handler
+// Middleware to handle unmatched routes
 export const notFoundHandler = (req: Request, res: Response): void => {
     res.status(404).json({
         status: 404,
