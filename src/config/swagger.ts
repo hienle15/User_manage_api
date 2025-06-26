@@ -22,7 +22,7 @@ const swaggerOptions = {
 
       },
        {
-        url: `https://usermanageapi-production-d23e.up.railway.app/v1`,
+        url: `https://usermanageapi-production-d23e.up.railway.app/api/v1`,
         description: 'prodcution server',
         
       },
