@@ -19,6 +19,12 @@ const swaggerOptions = {
       {
         url: `http://${HOST}:${PORT}${API_VERSION}`,
         description: 'Development server',
+
+      },
+       {
+        url: `https://usermanageapi-production-d23e.up.railway.app/`,
+        description: 'prodcution server',
+        
       },
     ],
   },

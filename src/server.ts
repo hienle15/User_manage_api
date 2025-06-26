@@ -31,6 +31,10 @@ app.use('/projects', swaggerUi.serve, (req: Request, res: Response, next: NextFu
   const specs = swaggerJsdoc(swaggerOptions);
   swaggerUi.setup(specs)(req, res, next);
 });
+app.use('/users', swaggerUi.serve, (req: Request, res: Response, next: NextFunction) => {
+  const specs = swaggerJsdoc(swaggerOptions);
+  swaggerUi.setup(specs)(req, res, next);
+});
 
 // Routes
 app.use(API_VERSION + "/users", router);
