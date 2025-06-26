@@ -14,9 +14,8 @@ import projectRoutes from "./routes/project.routes";
 dotenv.config();
 
 const app = express();
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || 3000
 const HOST = process.env.HOST || 'localhost';
-const DB_HOST = process.env.DB_HOST ;
 const API_VERSION = process.env.API_VERSION;
 
 // Middlewares
@@ -49,7 +48,8 @@ app.use((req, res) => {
 app.use(errorHandler);
 
 app.listen(PORT, () => {
-  console.log(`Server running at: http://${HOST}:${PORT}`);
-  console.log(`Swagger UI: http://${DB_HOST}:${PORT}/api-docs`);
-console.log(`Projects: http://${DB_HOST}:${PORT}/projects`);
+ 
+  console.log(`Swagger UI: http://${HOST}:${PORT}/api-docs`);
+console.log(`Projects: http://${HOST}:${PORT}/projects`);
+console.log(`Users: http://${HOST}:${PORT}/users`);
 });

@@ -3,7 +3,7 @@ import dotenv from 'dotenv';
 // Load environment variables
 dotenv.config();
 
-const DB_HOST = process.env.DB_HOST;
+const HOST = process.env.HOST;
 const PORT = process.env.PORT;
 const API_VERSION = process.env.API_VERSION;
 
@@ -17,7 +17,7 @@ const swaggerOptions = {
     },
     servers: [
       {
-        url: `http://${DB_HOST}:${PORT}${API_VERSION}`,
+        url: `http://${HOST}:${PORT}${API_VERSION}`,
         description: 'Development server',
       },
     ],

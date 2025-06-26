@@ -1,5 +1,7 @@
-import mysql from 'mysql';
+import mysql from 'mysql2';
 import connection from "../utils/database";
+import pool from '../utils/database';
+
 
 interface UserData {
     name?: string;

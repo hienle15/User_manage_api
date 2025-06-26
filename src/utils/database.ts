@@ -1,4 +1,4 @@
-import mysql from 'mysql';
+import mysql from 'mysql2';
 import dotenv from 'dotenv';
 
 dotenv.config();
@@ -9,9 +9,8 @@ const connection = mysql.createConnection({
     password: process.env.DB_PASSWORD,
     database: process.env.DB_NAME,
     port: Number(process.env.DB_PORT) || 3306,
-    // Connection timeout and reconnect settings
-    connectTimeout: 10000,
-    timeout: 10000
+    // chỉ giữ connectTimeout
+    connectTimeout: 10000
 });
 
 // Create pool to handle disconnects
@@ -22,7 +21,7 @@ const pool = mysql.createPool({
     password: process.env.DB_PASSWORD,
     database: process.env.DB_NAME,
     port: Number(process.env.DB_PORT) || 3306,
-      connectTimeout: 60000
+    connectTimeout: 60000
 });
 
 // Handle connection errors
